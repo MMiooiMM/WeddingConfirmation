@@ -47,73 +47,83 @@
     <BSColBreak/>
     <div class="d-flex">
         <div>
-            <BSInputRadio CheckedValue="@("Radio 1")" @bind-Value="_joining" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+            <BSInputRadio CheckedValue="@Joining.Yes" @bind-Value="_joining" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
                 出席，絕對到場！
             </BSInputRadio>
         </div>
         <div class="ms-3">
-            <BSInputRadio CheckedValue="@("Radio 2")" @bind-Value="_joining" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+            <BSInputRadio CheckedValue="@Joining.No" @bind-Value="_joining" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
                 無法出席，祝你們幸福美滿！
             </BSInputRadio>
         </div>
     </div>   
 </div>
 
-<div class="mb-3">
-    <MioLabel ForId="numberOfPeople">4. 共幾個人出席：</MioLabel>
-    <p>人數請包含自己唷，方便我們分配桌數</p>
-    <BSInput id="numberOfPeople" InputType="InputType.Number" placeholder="請填入到場人數" @bind-Value="_numberOfPeople"/>
-</div>
+@if (_joining.Equals(Joining.Yes))
+{
+    <div class="mb-3">
+        <MioLabel ForId="numberOfPeople">4. 共幾個人出席：</MioLabel>
+        <p>人數請包含自己唷，方便我們分配桌數</p>
+        <BSInput id="numberOfPeople" InputType="InputType.Number" placeholder="請填入到場人數" @bind-Value="_numberOfPeople"/>
+    </div>
+
+    <div class="mb-3">
+        <MioLabel ForId="numberOfChildSeat">5. 需要幾張兒童座椅：</MioLabel>
+        <BSInput id="numberOfChildSeat" InputType="InputType.Number" placeholder="請填入需要的張數" @bind-Value="_numberOfChildSeat"/>
+    </div>
+
+    <div class="mb-3">
+        <MioLabel ForId="numberOfVegetarian">6. 共幾位吃素：</MioLabel>
+        <p>還請一併考量同行親友</p>
+        <BSInput id="numberOfVegetarian" InputType="InputType.Number" placeholder="請填入素食者人數" @bind-Value="_numberOfVegetarian"/>
+    </div> 
+}
+
 
 <div class="mb-3">
-    <MioLabel ForId="numberOfChildSeat">5. 需要幾張兒童座椅：</MioLabel>
-    <BSInput id="numberOfChildSeat" InputType="InputType.Number" placeholder="請填入需要的張數" @bind-Value="_numberOfChildSeat"/>
-</div>
-
-<div class="mb-3">
-    <MioLabel ForId="numberOfVegetarian">6. 共幾位吃素：</MioLabel>
-    <p>還請一併考量同行親友</p>
-    <BSInput id="numberOfVegetarian" InputType="InputType.Number" placeholder="請填入素食者人數" @bind-Value="_numberOfVegetarian"/>
-</div>
-
-<div class="mb-3">
-    <BSLabel>7. 是否需要寄送喜帖：</BSLabel>
+    <MioLabel>7. 是否需要寄送喜帖：</MioLabel>
     <BSColBreak/>
     <div class="d-flex">
         <div>
-            <BSInputRadio CheckedValue="@("Radio 1")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+            <BSInputRadio CheckedValue="@Send.Email" @bind-Value="_send" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
                 需要，請寄電子喜帖給我
             </BSInputRadio>
         </div>
         <div class="ms-3">
-            <BSInputRadio CheckedValue="@("Radio 2")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Primary" IsOutlined="true">
+            <BSInputRadio CheckedValue="@Send.Paper" @bind-Value="_send" IsToggle="true" Color="BSColor.Primary" IsOutlined="true">
                 需要，請寄紙本喜帖給我
             </BSInputRadio>
         </div>
         <div class="ms-3">
-            <BSInputRadio CheckedValue="@("Radio 3")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+            <BSInputRadio CheckedValue="@Send.None" @bind-Value="_send" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
                 不用唷，婚禮相關資訊我都知道了
             </BSInputRadio>
         </div>
     </div>
 </div>
 
-<div class="mb-3">
-    <MioLabel ForId="email">8. 電子喜帖寄送信箱：</MioLabel>
-    <BSInput id="email" InputType="InputType.Email" placeholder="請填入電子信箱" @bind-Value="_email"/>
-</div>
+@if (_send.Equals(Send.Email))
+{
+    <div class="mb-3">
+        <MioLabel ForId="email">8. 電子喜帖寄送信箱：</MioLabel>
+        <BSInput id="email" InputType="InputType.Email" placeholder="請填入電子信箱" @bind-Value="_email"/>
+    </div>
+}
 
-<div class="mb-3">
-    <MioLabel ForId="postalCode">9. 紙本喜帖寄送郵遞區號：
-            <a href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">（3+2郵遞區號查詢）</a>
-    </MioLabel>
-    <BSInput id="postalCode" InputType="InputType.Text" placeholder="請填入 3 + 2郵遞區號" @bind-Value="_postalCode"/>
-</div>
+@if (_send.Equals(Send.Paper))
+{
+    <div class="mb-3">
+        <MioLabel ForId="postalCode">9. 紙本喜帖寄送郵遞區號：
+                <a href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">（3+2郵遞區號查詢）</a>
+        </MioLabel>
+        <BSInput id="postalCode" InputType="InputType.Text" placeholder="請填入 3 + 2郵遞區號" @bind-Value="_postalCode"/>
+    </div>
 
-<div class="mb-3">
-    <MioLabel ForId="address">10. 紙本喜帖寄送地址：</MioLabel>
-    <BSInput id="address" InputType="InputType.Text" placeholder="請填入地址" @bind-Value="_address"/>
-</div>
+    <div class="mb-3">
+        <MioLabel ForId="address">10. 紙本喜帖寄送地址：</MioLabel>
+        <BSInput id="address" InputType="InputType.Text" placeholder="請填入地址" @bind-Value="_address"/>
+    </div>
+}
 
 <div class="mb-3">
     <MioLabel ForId="phone">11. 您的聯絡電話：</MioLabel>
@@ -125,7 +135,7 @@
     <p>如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</p>
     <BSColBreak/>
     <BSImage Source="600x400" IsFluid="true" IsThumbnail="true" IsPlaceholder="true" Align="Align.Center"/>
-    <BSInput id="blessing" InputType="InputType.TextArea" placeholder="請填入文字" @bind-Value="_blessing"/>
+    <BSInput Class="mt-3" id="blessing" InputType="InputType.TextArea" placeholder="請填入文字" @bind-Value="_blessing"/>
 </div>
 
 <div class="mb-3">
@@ -137,7 +147,7 @@
 @_numberOfPeople
 @_numberOfChildSeat
 @_numberOfVegetarian
-@_sendType
+@_send
 @_email
 @_postalCode
 @_address
@@ -147,11 +157,11 @@
 {
     private string _name { get; set; } = "";
     private int? _relationship;
-    private string _joining { get; set; } = "";
+    private string _joining { get; set; } = Joining.Yes;
     private int? _numberOfPeople;
     private int _numberOfChildSeat  { get; set; } = 0;
     private int? _numberOfVegetarian;
-    private string _sendType { get; set; } = "";
+    private string _send { get; set; } = Send.Email;
     private string _email { get; set; } = "";
     private string _postalCode { get; set; } = "";
     private string _address { get; set; } = "";
