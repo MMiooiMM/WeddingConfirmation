@@ -2,7 +2,7 @@
 
 <PageTitle>米歐與米婔的婚禮意願確認</PageTitle>
 
-<BSImage Source="1000x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true"/>
+<BSImage Source="800x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true"/>
 
 <h1 style="margin-top:40px;">婚禮出席統計</h1>
 
@@ -26,7 +26,7 @@
 <h3>地點 Location</h3>
 <p>香格里拉</p>
 
-<BSImage Source="400x400" IsFluid="true" IsThumbnail="true" Align="Align.Center" />
+<BSImage Source="400x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true" Align="Align.Center" />
 
 <div class="mb-3">
     <BSLabel>1. 請問您的大名：</BSLabel>
@@ -110,10 +110,13 @@
     <BSLabel>12. 有什麼話想和我們說嗎：</BSLabel>
     <p>如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</p>
     <BSColBreak/>
-    <BSImage Source="600x400" IsFluid="true" IsThumbnail="true" Align="Align.Center"/>
+    <BSImage Source="600x400" IsFluid="true" IsThumbnail="true" IsPlaceholder="true" Align="Align.Center"/>
     <BSInput InputType="InputType.TextArea" placeholder="請填入文字" @bind-Value="_blessing"/>
 </div>
 
+<div class="mb-3">
+    <BSButton Color="BSColor.Primary">送出</BSButton>
+</div>
 @_name
 @_relationship
 @_joining
