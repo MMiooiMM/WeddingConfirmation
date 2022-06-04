@@ -1,9 +1,143 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>米歐與米婔的婚禮意願確認</PageTitle>
 
-<h1>Hello, world!</h1>
+<BSImage Source="1000x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true"/>
 
-Welcome to your new app.
+<h1 style="margin-top:40px;">婚禮出席統計</h1>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<article>
+給每一個曾參與我們成長過程的您：
+<br />經過十年的愛情長跑，我們終於要結婚了！
+<br />
+<br />在這個對我們來說非常重要的日子，
+<br />我們衷心希望能有您的參與，
+<br />讓這個充滿意義的日子更為圓滿！
+<br />
+<br />Charles & Catherine 敬上
+</article>
+
+<h3>日期 Date</h3>
+<p>2022/11/26 (六)</p>
+
+<h3>時間 Time</h3>
+<p>6:00 婚宴入席 6:30 婚宴開始</p>
+
+<h3>地點 Location</h3>
+<p>香格里拉</p>
+
+<BSImage Source="400x400" IsFluid="true" IsThumbnail="true" Align="Align.Center" />
+
+<div class="mb-3">
+    <BSLabel>1. 請問您的大名：</BSLabel>
+    <BSInput InputType="InputType.Text" placeholder="請填入您的大名" @bind-Value="_name"/>
+</div>
+
+<div class="mb-3">
+    <BSLabel>2. 與我們的關係是：</BSLabel>
+    <BSInput InputType="InputType.Select" @bind-Value="_relationship" >
+        <option value="null">請選擇</option>
+        <option value="1">新郎親戚</option>
+        <option value="2">新娘親戚</option>
+    </BSInput>
+</div>
+
+<div class="mb-3">
+    <BSLabel>3. 是否會出席婚宴：</BSLabel>
+    <BSColBreak/>
+    <BSInputRadio CheckedValue="@("Radio 1")" @bind-Value="_joining" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+        出席，絕對到場！
+    </BSInputRadio>
+    <BSInputRadio CheckedValue="@("Radio 2")" @bind-Value="_joining" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+        無法出席，祝你們幸福美滿！
+    </BSInputRadio>
+</div>
+
+<div class="mb-3">
+    <BSLabel>4. 共幾個人出席：</BSLabel>
+    <p>人數請包含自己唷，方便我們分配桌數</p>
+    <BSInput InputType="InputType.Number" placeholder="請填入到場人數" @bind-Value="_numberOfPeople"/>
+</div>
+
+<div class="mb-3">
+    <BSLabel>5. 需要幾張兒童座椅：</BSLabel>
+    <BSInput InputType="InputType.Number" placeholder="請填入需要的張數" @bind-Value="_numberOfChildSeat"/>
+</div>
+
+<div class="mb-3">
+    <BSLabel>6. 共幾位吃素：</BSLabel>
+    <p>還請一併考量同行親友</p>
+    <BSInput InputType="InputType.Number" placeholder="請填入素食者人數" @bind-Value="_numberOfVegetarian"/>
+</div>
+
+<div class="mb-3">
+    <BSLabel>7. 是否需要寄送喜帖：</BSLabel>
+    <BSColBreak/>
+    <BSInputRadio CheckedValue="@("Radio 1")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+        需要，請寄電子喜帖給我
+    </BSInputRadio>
+    <BSInputRadio CheckedValue="@("Radio 2")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Primary" IsOutlined="true">
+        需要，請寄紙本喜帖給我
+    </BSInputRadio>
+    <BSInputRadio CheckedValue="@("Radio 3")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+        不用唷，婚禮相關資訊我都知道了
+    </BSInputRadio>
+</div>
+
+<div class="mb-3">
+    <BSLabel>8. 電子喜帖寄送信箱：</BSLabel>
+    <BSInput InputType="InputType.Email" placeholder="請填入電子信箱" @bind-Value="_email"/>
+</div>
+
+<div class="mb-3">
+    <BSLabel>9. 紙本喜帖寄送郵遞區號：
+            <a href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">（3+2郵遞區號查詢）</a>
+    </BSLabel>
+    <BSInput InputType="InputType.Text" placeholder="請填入 3 + 2郵遞區號" @bind-Value="_postalCode"/>
+</div>
+
+<div class="mb-3">
+    <BSLabel>10. 紙本喜帖寄送地址：</BSLabel>
+    <BSInput InputType="InputType.Text" placeholder="請填入地址" @bind-Value="_address"/>
+</div>
+
+<div class="mb-3">
+    <BSLabel>11. 您的聯絡電話：</BSLabel>
+    <BSInput InputType="InputType.Text" placeholder="請填入電話號碼" @bind-Value="_phone"/>
+</div>
+
+<div class="mb-3">
+    <BSLabel>12. 有什麼話想和我們說嗎：</BSLabel>
+    <p>如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</p>
+    <BSColBreak/>
+    <BSImage Source="600x400" IsFluid="true" IsThumbnail="true" Align="Align.Center"/>
+    <BSInput InputType="InputType.TextArea" placeholder="請填入文字" @bind-Value="_blessing"/>
+</div>
+
+@_name
+@_relationship
+@_joining
+@_numberOfPeople
+@_numberOfChildSeat
+@_numberOfVegetarian
+@_sendType
+@_email
+@_postalCode
+@_address
+@_phone
+@_blessing
+@code
+{
+    private string _name { get; set; } = "";
+    private int? _relationship;
+    private string _joining { get; set; } = "";
+    private int? _numberOfPeople;
+    private int _numberOfChildSeat  { get; set; } = 0;
+    private int? _numberOfVegetarian;
+    private string _sendType { get; set; } = "";
+    private string _email { get; set; } = "";
+    private string _postalCode { get; set; } = "";
+    private string _address { get; set; } = "";
+    private string _phone { get; set; } = "";
+    private string _blessing { get; set; } = "";
+}
