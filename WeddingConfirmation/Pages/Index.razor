@@ -45,12 +45,18 @@
 <div class="mb-3">
     <MioLabel>3. 是否會出席婚宴：</MioLabel>
     <BSColBreak/>
-    <BSInputRadio CheckedValue="@("Radio 1")" @bind-Value="_joining" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
-        出席，絕對到場！
-    </BSInputRadio>
-    <BSInputRadio CheckedValue="@("Radio 2")" @bind-Value="_joining" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
-        無法出席，祝你們幸福美滿！
-    </BSInputRadio>
+    <div class="d-flex">
+        <div>
+            <BSInputRadio CheckedValue="@("Radio 1")" @bind-Value="_joining" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+                出席，絕對到場！
+            </BSInputRadio>
+        </div>
+        <div class="ms-3">
+            <BSInputRadio CheckedValue="@("Radio 2")" @bind-Value="_joining" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+                無法出席，祝你們幸福美滿！
+            </BSInputRadio>
+        </div>
+    </div>   
 </div>
 
 <div class="mb-3">
@@ -73,15 +79,23 @@
 <div class="mb-3">
     <BSLabel>7. 是否需要寄送喜帖：</BSLabel>
     <BSColBreak/>
-    <BSInputRadio CheckedValue="@("Radio 1")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
-        需要，請寄電子喜帖給我
-    </BSInputRadio>
-    <BSInputRadio CheckedValue="@("Radio 2")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Primary" IsOutlined="true">
-        需要，請寄紙本喜帖給我
-    </BSInputRadio>
-    <BSInputRadio CheckedValue="@("Radio 3")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
-        不用唷，婚禮相關資訊我都知道了
-    </BSInputRadio>
+    <div class="d-flex">
+        <div>
+            <BSInputRadio CheckedValue="@("Radio 1")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+                需要，請寄電子喜帖給我
+            </BSInputRadio>
+        </div>
+        <div class="ms-3">
+            <BSInputRadio CheckedValue="@("Radio 2")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Primary" IsOutlined="true">
+                需要，請寄紙本喜帖給我
+            </BSInputRadio>
+        </div>
+        <div class="ms-3">
+            <BSInputRadio CheckedValue="@("Radio 3")" @bind-Value="_sendType" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+                不用唷，婚禮相關資訊我都知道了
+            </BSInputRadio>
+        </div>
+    </div>
 </div>
 
 <div class="mb-3">
