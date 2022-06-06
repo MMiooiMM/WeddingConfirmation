@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="BlazorStrap" Version="5.0.105.4262022" />
+    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.57.0.2657" />
   </ItemGroup>
 
 </Project>

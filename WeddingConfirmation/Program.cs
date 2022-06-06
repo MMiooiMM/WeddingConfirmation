@@ -1,14 +1,30 @@
 using BlazorStrap;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using WeddingConfirmation.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+IConfigurationRoot config;
+
+if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development)
+{
+    config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.development.json")
+                 .Build();
+}
+else
+{
+    config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+}
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<GoogleSheetService>();
+builder.Services.Configure<SheetConfig>(config.GetSection("Sheet"));
 
 builder.Services.AddBlazorStrap();
 

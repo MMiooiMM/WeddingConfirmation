@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+@using WeddingConfirmation.Data
+@inject GoogleSheetService sheetService
 <PageTitle>米歐與米婔的婚禮意願確認</PageTitle>
 
 <BSImage Source="800x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true"/>
@@ -139,7 +141,7 @@
 </div>
 
 <div class="mb-3">
-    <BSButton Color="BSColor.Primary">送出</BSButton>
+    <BSButton Color="BSColor.Primary" OnClick="sheetService.Post">送出</BSButton>
 </div>
 @_name
 @_relationship

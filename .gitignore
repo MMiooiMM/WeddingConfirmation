@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/WeddingConfirmation/Properties/ServiceDependencies/wedding11261204 - Web Deploy/profile.arm.json
+/WeddingConfirmation/client_secrets.json
