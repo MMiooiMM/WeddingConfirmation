@@ -1,7 +1,10 @@
 ﻿@page "/"
 
 @using WeddingConfirmation.Data
-@inject GoogleSheetService sheetService
+
+@inject GoogleSheetService _sheetService
+@inject NavigationManager _navManager
+
 <PageTitle>米歐與米婔的婚禮意願確認</PageTitle>
 
 <EditForm Model="@_comfirmation" OnValidSubmit="@HandleSumbit">
@@ -155,6 +158,7 @@
 @functions{
     void HandleSumbit()
     {
-        sheetService.Post(_comfirmation);
+        _sheetService.Post(_comfirmation);
+        _navManager.NavigateTo("/thanks");
     }
 }
