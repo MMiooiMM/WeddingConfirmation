@@ -17,7 +17,7 @@ namespace WeddingConfirmation.Data
             _sheetConfig = sheetConfigOption.Value;
         }
 
-        public void Post()
+        public void Post(Confirmation confirmation)
         {
             try
             {
@@ -49,7 +49,20 @@ namespace WeddingConfirmation.Data
                 ValueRange requestBody = new ValueRange()
                 {
                     Values = new List<IList<object>>() {
-                        new List<object> { "123", "aaa", "wdw" }
+                        new List<object> {
+                            confirmation.Name,
+                            confirmation.Relationship ?? "忘了填",
+                            confirmation.Joining,
+                            confirmation.NumberOfPeople ?? 0,
+                            confirmation.NumberOfChildSeat,
+                            confirmation.NumberOfVegetarian,
+                            confirmation.Send,
+                            confirmation.Email,
+                            confirmation.PostalCode,
+                            confirmation.Address,
+                            confirmation.Phone,
+                            confirmation.Blessing
+                        }
                     }
                 };
 

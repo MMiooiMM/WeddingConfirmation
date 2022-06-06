@@ -4,169 +4,157 @@
 @inject GoogleSheetService sheetService
 <PageTitle>米歐與米婔的婚禮意願確認</PageTitle>
 
-<BSImage Source="800x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true"/>
+<EditForm Model="@_comfirmation" OnValidSubmit="@HandleSumbit">
 
-<h1 style="margin-top:40px;">婚禮出席統計</h1>
+    <BSImage Source="800x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true"/>
 
-<article>
-給每一個曾參與我們成長過程的您：
-<br />經過十年的愛情長跑，我們終於要結婚了！
-<br />
-<br />在這個對我們來說非常重要的日子，
-<br />我們衷心希望能有您的參與，
-<br />讓這個充滿意義的日子更為圓滿！
-<br />
-<br />Charles & Catherine 敬上
-</article>
+    <h1 style="margin-top:40px;">婚禮出席統計</h1>
 
-<h3>日期 Date</h3>
-<p>2022/11/26 (六)</p>
+    <article>
+    給每一個曾參與我們成長過程的您：
+    <br />經過十年的愛情長跑，我們終於要結婚了！
+    <br />
+    <br />在這個對我們來說非常重要的日子，
+    <br />我們衷心希望能有您的參與，
+    <br />讓這個充滿意義的日子更為圓滿！
+    <br />
+    <br />Charles & Catherine 敬上
+    </article>
 
-<h3>時間 Time</h3>
-<p>6:00 婚宴入席 6:30 婚宴開始</p>
+    <h3>日期 Date</h3>
+    <p>2022/11/26 (六)</p>
 
-<h3>地點 Location</h3>
-<p>香格里拉</p>
+    <h3>時間 Time</h3>
+    <p>6:00 婚宴入席 6:30 婚宴開始</p>
 
-<BSImage Source="400x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true" Align="Align.Center" />
+    <h3>地點 Location</h3>
+    <p>香格里拉</p>
 
-<div class="mb-3">
-    <MioLabel ForId="name">1. 請問您的大名：</MioLabel>
-    <BSInput id="name" InputType="InputType.Text" placeholder="請填入您的大名" @bind-Value="_name"/>
-</div>
+    <BSImage Source="400x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true" Align="Align.Center" />
 
-<div class="mb-3">
-    <MioLabel ForId="relationship">2. 與我們的關係是：</MioLabel>
-    <BSInput id="relationship" InputType="InputType.Select" @bind-Value="_relationship" >
-        <option value="null">請選擇</option>
-        <option value="1">新郎親戚</option>
-        <option value="2">新娘親戚</option>
-    </BSInput>
-</div>
+    <div class="mb-3">
+        <MioLabel ForId="name">1. 請問您的大名：</MioLabel>
+        <BSInput id="name" InputType="InputType.Text" placeholder="請填入您的大名" @bind-Value="_comfirmation.Name"/>
+    </div>
 
-<div class="mb-3">
-    <MioLabel>3. 是否會出席婚宴：</MioLabel>
-    <BSColBreak/>
-    <div class="d-flex">
-        <div>
-            <BSInputRadio CheckedValue="@Joining.Yes" @bind-Value="_joining" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
-                出席，絕對到場！
-            </BSInputRadio>
+    <div class="mb-3">
+        <MioLabel ForId="relationship">2. 與我們的關係是：</MioLabel>
+        <BSInput id="relationship" InputType="InputType.Select" @bind-Value="_comfirmation.Relationship" >
+            <option value="null">請選擇</option>
+            <option value="新郎親戚">新郎親戚</option>
+            <option value="新娘親戚">新娘親戚</option>
+        </BSInput>
+    </div>
+
+    <div class="mb-3">
+        <MioLabel>3. 是否會出席婚宴：</MioLabel>
+        <BSColBreak/>
+        <div class="d-flex">
+            <div>
+                <BSInputRadio CheckedValue="@Joining.Yes" @bind-Value="_comfirmation.Joining" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+                    出席，絕對到場！
+                </BSInputRadio>
+            </div>
+            <div class="ms-3">
+                <BSInputRadio CheckedValue="@Joining.No" @bind-Value="_comfirmation.Joining" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+                    無法出席，祝你們幸福美滿！
+                </BSInputRadio>
+            </div>
+        </div>   
+    </div>
+
+    @if (_comfirmation.Joining.Equals(Joining.Yes))
+    {
+        <div class="mb-3">
+            <MioLabel ForId="numberOfPeople">4. 共幾個人出席：</MioLabel>
+            <p>人數請包含自己唷，方便我們分配桌數</p>
+            <BSInput id="numberOfPeople" InputType="InputType.Number" placeholder="請填入到場人數" @bind-Value="_comfirmation.NumberOfPeople"/>
         </div>
-        <div class="ms-3">
-            <BSInputRadio CheckedValue="@Joining.No" @bind-Value="_joining" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
-                無法出席，祝你們幸福美滿！
-            </BSInputRadio>
-        </div>
-    </div>   
-</div>
 
-@if (_joining.Equals(Joining.Yes))
-{
-    <div class="mb-3">
-        <MioLabel ForId="numberOfPeople">4. 共幾個人出席：</MioLabel>
-        <p>人數請包含自己唷，方便我們分配桌數</p>
-        <BSInput id="numberOfPeople" InputType="InputType.Number" placeholder="請填入到場人數" @bind-Value="_numberOfPeople"/>
-    </div>
+        <div class="mb-3">
+            <MioLabel ForId="numberOfChildSeat">5. 需要幾張兒童座椅：</MioLabel>
+            <BSInput id="numberOfChildSeat" InputType="InputType.Number" placeholder="請填入需要的張數" @bind-Value="_comfirmation.NumberOfChildSeat"/>
+        </div>
+
+        <div class="mb-3">
+            <MioLabel ForId="numberOfVegetarian">6. 共幾位吃素：</MioLabel>
+            <p>還請一併考量同行親友</p>
+            <BSInput id="numberOfVegetarian" InputType="InputType.Number" placeholder="請填入素食者人數" @bind-Value="_comfirmation.NumberOfVegetarian"/>
+        </div> 
+    }
+
 
     <div class="mb-3">
-        <MioLabel ForId="numberOfChildSeat">5. 需要幾張兒童座椅：</MioLabel>
-        <BSInput id="numberOfChildSeat" InputType="InputType.Number" placeholder="請填入需要的張數" @bind-Value="_numberOfChildSeat"/>
-    </div>
-
-    <div class="mb-3">
-        <MioLabel ForId="numberOfVegetarian">6. 共幾位吃素：</MioLabel>
-        <p>還請一併考量同行親友</p>
-        <BSInput id="numberOfVegetarian" InputType="InputType.Number" placeholder="請填入素食者人數" @bind-Value="_numberOfVegetarian"/>
-    </div> 
-}
-
-
-<div class="mb-3">
-    <MioLabel>7. 是否需要寄送喜帖：</MioLabel>
-    <BSColBreak/>
-    <div class="d-flex">
-        <div>
-            <BSInputRadio CheckedValue="@Send.Email" @bind-Value="_send" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
-                需要，請寄電子喜帖給我
-            </BSInputRadio>
-        </div>
-        <div class="ms-3">
-            <BSInputRadio CheckedValue="@Send.Paper" @bind-Value="_send" IsToggle="true" Color="BSColor.Primary" IsOutlined="true">
-                需要，請寄紙本喜帖給我
-            </BSInputRadio>
-        </div>
-        <div class="ms-3">
-            <BSInputRadio CheckedValue="@Send.None" @bind-Value="_send" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
-                不用唷，婚禮相關資訊我都知道了
-            </BSInputRadio>
+        <MioLabel>7. 是否需要寄送喜帖：</MioLabel>
+        <BSColBreak/>
+        <div class="d-flex">
+            <div>
+                <BSInputRadio CheckedValue="@Send.Email" @bind-Value="_comfirmation.Send" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+                    需要，請寄電子喜帖給我
+                </BSInputRadio>
+            </div>
+            <div class="ms-3">
+                <BSInputRadio CheckedValue="@Send.Paper" @bind-Value="_comfirmation.Send" IsToggle="true" Color="BSColor.Primary" IsOutlined="true">
+                    需要，請寄紙本喜帖給我
+                </BSInputRadio>
+            </div>
+            <div class="ms-3">
+                <BSInputRadio CheckedValue="@Send.None" @bind-Value="_comfirmation.Send" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+                    不用唷，婚禮相關資訊我都知道了
+                </BSInputRadio>
+            </div>
         </div>
     </div>
-</div>
 
-@if (_send.Equals(Send.Email))
-{
+    @if (_comfirmation.Send.Equals(Send.Email))
+    {
+        <div class="mb-3">
+            <MioLabel ForId="email">8. 電子喜帖寄送信箱：</MioLabel>
+            <BSInput id="email" InputType="InputType.Email" placeholder="請填入電子信箱" @bind-Value="_comfirmation.Email"/>
+        </div>
+    }
+
+    @if (_comfirmation.Send.Equals(Send.Paper))
+    {
+        <div class="mb-3">
+            <MioLabel ForId="postalCode">9. 紙本喜帖寄送郵遞區號：
+                    <a href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">（3+2郵遞區號查詢）</a>
+            </MioLabel>
+            <BSInput id="postalCode" InputType="InputType.Text" placeholder="請填入 3 + 2郵遞區號" @bind-Value="_comfirmation.PostalCode"/>
+        </div>
+
+        <div class="mb-3">
+            <MioLabel ForId="address">10. 紙本喜帖寄送地址：</MioLabel>
+            <BSInput id="address" InputType="InputType.Text" placeholder="請填入地址" @bind-Value="_comfirmation.Address"/>
+        </div>
+    }
+
     <div class="mb-3">
-        <MioLabel ForId="email">8. 電子喜帖寄送信箱：</MioLabel>
-        <BSInput id="email" InputType="InputType.Email" placeholder="請填入電子信箱" @bind-Value="_email"/>
-    </div>
-}
-
-@if (_send.Equals(Send.Paper))
-{
-    <div class="mb-3">
-        <MioLabel ForId="postalCode">9. 紙本喜帖寄送郵遞區號：
-                <a href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">（3+2郵遞區號查詢）</a>
-        </MioLabel>
-        <BSInput id="postalCode" InputType="InputType.Text" placeholder="請填入 3 + 2郵遞區號" @bind-Value="_postalCode"/>
+        <MioLabel ForId="phone">11. 您的聯絡電話：</MioLabel>
+        <BSInput id="phone" InputType="InputType.Text" placeholder="請填入電話號碼" @bind-Value="_comfirmation.Phone"/>
     </div>
 
     <div class="mb-3">
-        <MioLabel ForId="address">10. 紙本喜帖寄送地址：</MioLabel>
-        <BSInput id="address" InputType="InputType.Text" placeholder="請填入地址" @bind-Value="_address"/>
+        <MioLabel ForId="blessing">12. 有什麼話想和我們說嗎：</MioLabel>
+        <p>如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</p>
+        <BSColBreak/>
+        <BSImage Source="600x400" IsFluid="true" IsThumbnail="true" IsPlaceholder="true" Align="Align.Center"/>
+        <BSInput Class="mt-3" id="blessing" InputType="InputType.TextArea" placeholder="請填入文字" @bind-Value="_comfirmation.Blessing"/>
     </div>
-}
 
-<div class="mb-3">
-    <MioLabel ForId="phone">11. 您的聯絡電話：</MioLabel>
-    <BSInput id="phone" InputType="InputType.Text" placeholder="請填入電話號碼" @bind-Value="_phone"/>
-</div>
+    <div class="mb-3">
+        <BSButton Color="BSColor.Primary" IsSubmit="true">送出</BSButton>
+    </div>
 
-<div class="mb-3">
-    <MioLabel ForId="blessing">12. 有什麼話想和我們說嗎：</MioLabel>
-    <p>如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</p>
-    <BSColBreak/>
-    <BSImage Source="600x400" IsFluid="true" IsThumbnail="true" IsPlaceholder="true" Align="Align.Center"/>
-    <BSInput Class="mt-3" id="blessing" InputType="InputType.TextArea" placeholder="請填入文字" @bind-Value="_blessing"/>
-</div>
-
-<div class="mb-3">
-    <BSButton Color="BSColor.Primary" OnClick="sheetService.Post">送出</BSButton>
-</div>
-@_name
-@_relationship
-@_joining
-@_numberOfPeople
-@_numberOfChildSeat
-@_numberOfVegetarian
-@_send
-@_email
-@_postalCode
-@_address
-@_phone
-@_blessing
+</EditForm>
 @code
 {
-    private string _name { get; set; } = "";
-    private int? _relationship;
-    private string _joining { get; set; } = Joining.Yes;
-    private int? _numberOfPeople;
-    private int _numberOfChildSeat  { get; set; } = 0;
-    private int? _numberOfVegetarian;
-    private string _send { get; set; } = Send.Email;
-    private string _email { get; set; } = "";
-    private string _postalCode { get; set; } = "";
-    private string _address { get; set; } = "";
-    private string _phone { get; set; } = "";
-    private string _blessing { get; set; } = "";
+    private Confirmation _comfirmation = new ();
+}
+
+@functions{
+    void HandleSumbit()
+    {
+        sheetService.Post(_comfirmation);
+    }
 }
