@@ -50,6 +50,7 @@ namespace WeddingConfirmation.Data
                 {
                     Values = new List<IList<object>>() {
                         new List<object> {
+                            confirmation.Venue,
                             confirmation.Name,
                             confirmation.Relationship ?? "忘了填",
                             confirmation.Joining,

@@ -2,6 +2,7 @@
 {
     public class Confirmation
     {
+        public string Venue { get; set; } = Constraints.Venue.Yilan;
         public string Name { get; set; } = "";
         public string? Relationship;
         public string Joining { get; set; } = Constraints.Joining.Yes;

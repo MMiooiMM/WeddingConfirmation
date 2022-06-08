@@ -9,7 +9,7 @@
 
 <EditForm Model="@_comfirmation" OnValidSubmit="@HandleSumbit">
 
-    <BSImage Source="800x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true"/>
+    <img src="images/BVA000287-0133.jpg" alt="閃蝦仁的一張圖" class="img-thumbnail">
 
     <h1 style="margin-top:40px;">婚禮出席統計</h1>
 
@@ -24,16 +24,50 @@
     <br />Charles & Catherine 敬上
     </article>
 
-    <h3>日期 Date</h3>
-    <p>2022/11/26 (六)</p>
+    <div class="mb-3">
+        <MioLabel>婚宴地點選擇：</MioLabel>
+        <BSColBreak/>
+        <div class="d-flex">
+            <div>
+                <BSInputRadio CheckedValue="@Venue.Yilan" @bind-Value="_comfirmation.Venue" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+                    結婚(宜蘭場)
+                </BSInputRadio>
+            </div>
+            <div class="ms-3">
+                <BSInputRadio CheckedValue="@Venue.Taipei" @bind-Value="_comfirmation.Venue" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+                    歸寧(台北場)
+                </BSInputRadio>
+            </div>
+        </div>
+    </div>
 
-    <h3>時間 Time</h3>
-    <p>6:00 婚宴入席 6:30 婚宴開始</p>
+    @if (_comfirmation.Venue.Equals(Venue.Yilan))
+    {
+        <h3>日期 Date</h3>
+        <p>2022/11/26 (六)</p>
 
-    <h3>地點 Location</h3>
-    <p>香格里拉</p>
+        <h3>時間 Time</h3>
+        <p>6:00 婚宴入席 6:30 婚宴開始</p>
 
-    <BSImage Source="400x400" IsFluid="true" IsThumbnail="true"  IsPlaceholder="true" Align="Align.Center" />
+        <h3>地點 Location</h3>
+        <p>香格里拉-宜蘭縣五結鄉公園二路15號</p>
+                
+        <img src="images/wedding-venue-yilan.png" alt="香格里拉-宜蘭縣五結鄉公園二路15號" class="img-thumbnail">
+    }
+    else
+    {
+        <h3>日期 Date</h3>
+        <p>2022/12/04 (日)</p>
+
+        <h3>時間 Time</h3>
+        <p>6:00 婚宴入席 6:30 婚宴開始</p>
+
+        <h3>地點 Location</h3>
+        <p>彭園壹品宴-10491台北市中山區南京東路二段63號2樓</p>
+
+        <img src="images/wedding-venue-taipei.png" alt="彭園壹品宴-10491台北市中山區南京東路二段63號2樓" class="img-thumbnail">
+    }
+    
 
     <div class="mb-3">
         <MioLabel ForId="name">1. 請問您的大名：</MioLabel>
@@ -141,7 +175,7 @@
         <MioLabel ForId="blessing">12. 有什麼話想和我們說嗎：</MioLabel>
         <p>如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</p>
         <BSColBreak/>
-        <BSImage Source="600x400" IsFluid="true" IsThumbnail="true" IsPlaceholder="true" Align="Align.Center"/>
+        <img src="images/BVA000287-0167.jpg" alt="閃蝦仁的一張圖" class="img-thumbnail" style="display:block;margin:auto;max-width:80%;">
         <BSInput Class="mt-3" id="blessing" InputType="InputType.TextArea" placeholder="請填入文字" @bind-Value="_comfirmation.Blessing"/>
     </div>
 
