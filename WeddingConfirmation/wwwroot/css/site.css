@@ -64,6 +64,18 @@ a, .btn-link {
     color: white;
 }
 
-    .blazor-error-boundary::after {
-        content: "An error has occurred."
+.blazor-error-boundary::after {
+    content: "An error has occurred."
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .content {
+        max-width: 100vw;
     }
+
+    .phone-form {
+        margin: 1rem !important;
+    }
+}

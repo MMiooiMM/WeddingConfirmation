@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/{venue?}"
 
 @using WeddingConfirmation.Data
 
@@ -7,7 +7,7 @@
 
 <PageTitle>郁倫與又綸的婚禮出席邀約</PageTitle>
 
-<EditForm Model="@_comfirmation" OnValidSubmit="@HandleSumbit">
+<EditForm Model="@_comfirmation" OnValidSubmit="@HandleSumbit" class="phone-form">
 
     <img src="images/BVA000287-0133.jpg" alt="閃蝦仁的一張圖" class="img-thumbnail">
 
@@ -193,10 +193,17 @@
 </EditForm>
 @code
 {
+    [Parameter]
+    public string? venue { get; set; }
+
     private Confirmation _comfirmation = new ();
 }
 
 @functions{
+    protected override void OnInitialized()
+    {
+        _comfirmation.Venue = venue ?? Venue.Yilan;
+    }
     void HandleSumbit()
     {
         _sheetService.Post(_comfirmation);
