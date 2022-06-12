@@ -5,7 +5,7 @@
 @inject GoogleSheetService _sheetService
 @inject NavigationManager _navManager
 
-<PageTitle>米歐與米婔的婚禮意願確認</PageTitle>
+<PageTitle>郁倫與又綸的婚禮出席邀約</PageTitle>
 
 <EditForm Model="@_comfirmation" OnValidSubmit="@HandleSumbit">
 
@@ -15,13 +15,13 @@
 
     <article>
     給每一個曾參與我們成長過程的您：
-    <br />經過十年的愛情長跑，我們終於要結婚了！
+    <br />經過八年的愛情長跑，我們終於要結婚了！
     <br />
     <br />在這個對我們來說非常重要的日子，
     <br />我們衷心希望能有您的參與，
     <br />讓這個充滿意義的日子更為圓滿！
     <br />
-    <br />Charles & Catherine 敬上
+    <br />黃郁倫(米歐) & 楊又綸 敬上
     </article>
 
     <div class="mb-3">
@@ -29,12 +29,12 @@
         <BSColBreak/>
         <div class="d-flex">
             <div>
-                <BSInputRadio CheckedValue="@Venue.Yilan" @bind-Value="_comfirmation.Venue" IsToggle="true" Color="BSColor.Success" IsOutlined="true">
+                <BSInputRadio CheckedValue="@Venue.Yilan" @bind-Value="_comfirmation.Venue" IsToggle="true" Color="BSColor.Primary" IsOutlined="true">
                     結婚(宜蘭場)
                 </BSInputRadio>
             </div>
             <div class="ms-3">
-                <BSInputRadio CheckedValue="@Venue.Taipei" @bind-Value="_comfirmation.Venue" IsToggle="true" Color="BSColor.Danger" IsOutlined="true">
+                <BSInputRadio CheckedValue="@Venue.Taipei" @bind-Value="_comfirmation.Venue" IsToggle="true" Color="BSColor.Secondary" IsOutlined="true">
                     歸寧(台北場)
                 </BSInputRadio>
             </div>
@@ -47,10 +47,11 @@
         <p>2022/11/26 (六)</p>
 
         <h3>時間 Time</h3>
-        <p>6:00 婚宴入席 6:30 婚宴開始</p>
+        <p>18:00 婚宴入席 18:30 婚宴開始</p>
 
         <h3>地點 Location</h3>
-        <p>香格里拉-宜蘭縣五結鄉公園二路15號</p>
+        <p>香格里拉冬山河渡假飯店-宜蘭縣五結鄉公園二路15號</p>
+        <p>飯店對面就有停車場，如果停滿了飯店人員會指引其他的停車場，不用怕開車沒有位置停！</p>
                 
         <img src="images/wedding-venue-yilan.png" alt="香格里拉-宜蘭縣五結鄉公園二路15號" class="img-thumbnail">
     }
@@ -60,12 +61,15 @@
         <p>2022/12/04 (日)</p>
 
         <h3>時間 Time</h3>
-        <p>6:00 婚宴入席 6:30 婚宴開始</p>
+        <p>11:30 婚宴入席 12:00 婚宴開始</p>
 
         <h3>地點 Location</h3>
         <p>彭園壹品宴-10491台北市中山區南京東路二段63號2樓</p>
+        <p>捷運松江南京8號出口 (第一飯店)，步行約 6 分鐘就可到達，也有特約停車場</p>
 
         <img src="images/wedding-venue-taipei.png" alt="彭園壹品宴-10491台北市中山區南京東路二段63號2樓" class="img-thumbnail">
+        <img src="images/S__43687964.jpg" alt="彭園壹品宴-10491台北市中山區南京東路二段63號2樓" class="img-thumbnail">
+        <img src="images/交通位置卡.jpg" alt="彭園壹品宴-10491台北市中山區南京東路二段63號2樓" class="img-thumbnail">
     }
     
 
@@ -78,8 +82,12 @@
         <MioLabel ForId="relationship">2. 與我們的關係是：</MioLabel>
         <BSInput id="relationship" InputType="InputType.Select" @bind-Value="_comfirmation.Relationship" >
             <option value="null">請選擇</option>
+            <option value="新郎朋友">新郎朋友</option>
             <option value="新郎親戚">新郎親戚</option>
+            <option value="新郎同事">新郎同事</option>
+            <option value="新娘朋友">新娘朋友</option>
             <option value="新娘親戚">新娘親戚</option>
+            <option value="新娘同事">新娘同事</option>
         </BSInput>
     </div>
 
@@ -155,9 +163,9 @@
     {
         <div class="mb-3">
             <MioLabel ForId="postalCode">9. 紙本喜帖寄送郵遞區號：
-                    <a href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">（3+2郵遞區號查詢）</a>
+                    <a href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">（3 + 3 郵遞區號查詢）</a>
             </MioLabel>
-            <BSInput id="postalCode" InputType="InputType.Text" placeholder="請填入 3 + 2郵遞區號" @bind-Value="_comfirmation.PostalCode"/>
+            <BSInput id="postalCode" InputType="InputType.Text" placeholder="請填入 3 + 3 郵遞區號" @bind-Value="_comfirmation.PostalCode"/>
         </div>
 
         <div class="mb-3">
@@ -173,16 +181,15 @@
 
     <div class="mb-3">
         <MioLabel ForId="blessing">12. 有什麼話想和我們說嗎：</MioLabel>
-        <p>如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</p>
+        <p>如果您有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</p>
         <BSColBreak/>
         <img src="images/BVA000287-0167.jpg" alt="閃蝦仁的一張圖" class="img-thumbnail" style="display:block;margin:auto;max-width:80%;">
         <BSInput Class="mt-3" id="blessing" InputType="InputType.TextArea" placeholder="請填入文字" @bind-Value="_comfirmation.Blessing"/>
     </div>
 
     <div class="mb-3">
-        <BSButton Color="BSColor.Primary" IsSubmit="true">送出</BSButton>
+        <BSButton Color="BSColor.Primary" IsSubmit="true" Class="mb-3">送出</BSButton>
     </div>
-
 </EditForm>
 @code
 {
