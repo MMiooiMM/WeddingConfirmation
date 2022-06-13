@@ -61,7 +61,7 @@ namespace WeddingConfirmation.Data
                             confirmation.Email,
                             confirmation.PostalCode,
                             confirmation.Address,
-                            confirmation.Phone,
+                            $"'{confirmation.Phone}",
                             confirmation.Blessing
                         }
                     }
