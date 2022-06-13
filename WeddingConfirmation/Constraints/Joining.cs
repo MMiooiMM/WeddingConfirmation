@@ -2,7 +2,7 @@
 {
     public static class Joining
     {
-        public const string Yes = "是";
-        public const string No = "否";
+        public const string Yes = "yes";
+        public const string No = "no";
     }
 }
