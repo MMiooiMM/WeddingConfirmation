@@ -73,19 +73,20 @@ main {
     min-height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed
+    background-attachment: fixed;
 }
 
 .content {
     max-width: 800px;
-    background-color: wheat;
 }
 
 
 @media (max-width: 640.98px) {
     .content {
         max-width: 100vw;
-        height: 100vh;
+    }
+    .page {
+        background-color: wheat;
     }
 }
 
@@ -96,6 +97,7 @@ main {
     }
 
     .content {
+        background-color: wheat;
         max-width: 800px;
         margin: 40px auto;
         border-radius: 16px;
